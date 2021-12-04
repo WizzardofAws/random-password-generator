@@ -10,7 +10,7 @@ symbols= string.punctuation
 while True:
     try:
         pass_length= int(input(' Please enter length of password (min is 8 characters):  '))
-        if len(pass_length) >= 8:
+        if pass_length >= 8:
             break
         else: 
             int(input(' Please enter a valid password length. Passwords must be 8 characters or more: '))
@@ -23,5 +23,7 @@ password= lower+digits+upper+symbols
 
 # this will return a list. joined:
 def shufflePassword(password):
-     new_password= "".join(random.sample(password,pass_length))
-print(new_password)
+    new_password= "".join(random.sample(password,pass_length))
+    return new_password
+
+print('your new password is:', password)
