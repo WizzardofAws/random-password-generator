@@ -1,29 +1,35 @@
 import string,random
+ 
+# generate password
+def generatePassword(length):
+    new_password= "".join(random.sample(password,length))
+    return new_password
+
+# establishing min requirement
+min_length= 8
+pass_length= input(' please enter password length: ')
 
 # defining patterns
 lower= string.ascii_lowercase
 upper= string.ascii_uppercase
 digits= string.digits
 symbols= string.punctuation
+password= lower+digits+upper+symbols
 
-# while loop for checking password length, handling exceptions
+# check password length
 while True:
     try:
-        pass_length= int(input(' Please enter length of password (min is 8 characters):  '))
-        if pass_length >= 8:
+        pass_length= int(pass_length)
+        if pass_length >= min_length:
             break
         else: 
-            int(input(' Please enter a valid password length. Passwords must be 8 characters or more: '))
+            pass_length= int(input(' Please enter a valid password length. 8 is the min:  '))
 
     except ValueError:
         print('only numbers are allowed!')
-        int(input('Please enter a valid number of characters: '))
-
-password= lower+digits+upper+symbols
-
-# this will return a list. joined:
-def shufflePassword(password):
-    new_password= "".join(random.sample(password,pass_length))
-    return new_password
-
-print('your new password is:', password)
+        pass_length= input('Please enter a valid number of characters: ')
+    except ValueError:
+        print(int(input('Please try again: ')))
+    
+new_password= generatePassword(pass_length)
+print('your new password is: ', new_password)
